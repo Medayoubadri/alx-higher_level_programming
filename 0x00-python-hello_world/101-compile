@@ -1,0 +1,14 @@
+#!/bin/bash
+# Check if PYFILE is set
+if [ -z "$PYFILE" ]; then
+    echo "PYFILE is not set"
+    exit 1
+fi
+
+# Compile the Python file
+python3 -m py_compile "$PYFILE"
+
+# Rename the compiled file to ${PYFILE}c
+compiled_file=$(find . -name "${PYFILE%.py}.cpython-*.pyc")
+output_file="${PYFILE}c"
+mv "$compiled_file" "$output_file"
