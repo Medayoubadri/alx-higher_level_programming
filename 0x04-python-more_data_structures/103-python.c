@@ -7,55 +7,57 @@
  */
 void print_python_list(PyObject *p)
 {
-	if (!PyList_Check(p))
-	{
-		printf("[ERROR] Invalid List Object\n");
-		return;
-	}
-
-	Py_ssize_t size = ((PyVarObject *)p)->ob_size;
-	Py_ssize_t allocated = ((PyListObject *)p)->allocated;
-	PyObject **items = ((PyListObject *)p)->ob_item;
+	Py_ssize_t size, allocated, i;
+	PyListObject *list;
 
 	printf("[*] Python list info\n");
-	printf("[*] Size of the Python List = %zd\n", size);
-	printf("[*] Allocated = %zd\n", allocated);
-
-	for (Py_ssize_t i = 0; i < size; i++)
+	if (!PyList_Check(p))
 	{
-		PyObject *item = items[i];
-		const char *type = item->ob_type->tp_name;
+		printf("\t[ERROR] Invalid List Object\n");
+		return;
+	}
+	list = (PyListObject *)p;
+	size = list->ob_size;
+	allocated = list->allocated;
 
-		printf("Element %zd: %s\n", i, type);
+	printf("\tSize of the Python List = %ld\n", size);
+	printf("\tAllocated = %ld\n", allocated);
+	for (i = 0; i < size; i++)
+	{
+		PyObject *item = list->ob_item[i];
+
+		printf("\tElement %ld: %s\n", i, item->ob_type->tp_name);
 	}
 }
+
 /**
  * print_python_bytes - Prints basic info about Python bytes objects.
  * @p: PyObject pointer to a Python bytes object.
  */
 void print_python_bytes(PyObject *p)
 {
-	if (!PyBytes_Check(p))
-	{
-		printf("[ERROR] Invalid Bytes Object\n");
-		return;
-	}
-
-	Py_ssize_t size = ((PyVarObject *)p)->ob_size;
-	char *bytes = ((PyBytesObject *)p)->ob_sval;
+	Py_ssize_t size, i, x;
+	PyBytesObject *bytes_obj;
+	char *string;
 
 	printf("[.] bytes object info\n");
-	printf("  size: %zd\n", size);
-	printf("  trying string: %s\n", bytes);
-
-	Py_ssize_t print_size = size < 10 ? size + 1 : 10;
-
-	printf("  first %zd bytes: ", print_size);
-	for (Py_ssize_t i = 0; i < print_size; i++)
+	if (!PyBytes_Check(p))
 	{
-		printf("%02x", (unsigned char) bytes[i]);
-		if (i < print_size - 1)
-			printf(" ");
+		printf("\t[ERROR] Invalid Bytes Object\n");
+		return;
+	}
+	bytes_obj = (PyBytesObject *)p;
+	size = bytes_obj->ob_size;
+	string = bytes_obj->ob_sval;
+
+	printf("\tsize: %ld\n", size);
+	printf("\ttrying string: %s\n", string);
+	x = size < 10 ? size : 10;
+
+	printf("\tfirst %ld bytes:", x);
+	for (i = 0; i < x; i++)
+	{
+		printf(" %02hhx", string[i]);
 	}
 	printf("\n");
 }
