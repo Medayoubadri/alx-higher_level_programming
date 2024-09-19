@@ -9,6 +9,7 @@ void print_python_list(PyObject *p)
 {
 	Py_ssize_t size, allocated, i;
 	PyListObject *list;
+	PyObject *item;
 
 	printf("[*] Python list info\n");
 	if (!PyList_Check(p))
@@ -24,9 +25,9 @@ void print_python_list(PyObject *p)
 	printf("\tAllocated = %zd\n", allocated);
 	for (i = 0; i < size; i++)
 	{
-		PyObject *item = list->ob_item[i];
+		item = list->ob_item[i];
 
-		printf("\tElement %zd: %s\n", i, item->ob_type->tp_name);
+		printf("\tElement %ld: %s\n", i, item->ob_type->tp_name);
 	}
 }
 
@@ -50,11 +51,13 @@ void print_python_bytes(PyObject *p)
 	size = bytes_obj->ob_size;
 	string = bytes_obj->ob_sval;
 
-	printf("\tsize: %zd\n", size);
+	printf("\tsize: %ld\n", size);
 	printf("\ttrying string: %s\n", string);
-	x = size < 10 ? size : 10;
-
-	printf("\tfirst %zd bytes:", x);
+	if (size + 1 < 10)
+		x = size + 1;
+	else
+		x = 10;
+	printf("\tfirst %ld bytes:", x);
 	for (i = 0; i < x; i++)
 	{
 		printf(" %02hhx", string[i]);
