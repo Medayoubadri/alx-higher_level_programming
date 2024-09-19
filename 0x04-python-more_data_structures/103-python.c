@@ -3,7 +3,7 @@
 
 /**
  * print_python_list - Prints basic info about Python lists.
- * @p: PyObject pointer to a Python list object.
+ * @p: PyObject pointer to a Python list.
  */
 void print_python_list(PyObject *p)
 {
@@ -20,13 +20,13 @@ void print_python_list(PyObject *p)
 	size = list->ob_size;
 	allocated = list->allocated;
 
-	printf("\tSize of the Python List = %ld\n", size);
-	printf("\tAllocated = %ld\n", allocated);
+	printf("\tSize of the Python List = %zd\n", size);
+	printf("\tAllocated = %zd\n", allocated);
 	for (i = 0; i < size; i++)
 	{
 		PyObject *item = list->ob_item[i];
 
-		printf("\tElement %ld: %s\n", i, item->ob_type->tp_name);
+		printf("\tElement %zd: %s\n", i, item->ob_type->tp_name);
 	}
 }
 
@@ -50,11 +50,11 @@ void print_python_bytes(PyObject *p)
 	size = bytes_obj->ob_size;
 	string = bytes_obj->ob_sval;
 
-	printf("\tsize: %ld\n", size);
+	printf("\tsize: %zd\n", size);
 	printf("\ttrying string: %s\n", string);
 	x = size < 10 ? size : 10;
 
-	printf("\tfirst %ld bytes:", x);
+	printf("\tfirst %zd bytes:", x);
 	for (i = 0; i < x; i++)
 	{
 		printf(" %02hhx", string[i]);
