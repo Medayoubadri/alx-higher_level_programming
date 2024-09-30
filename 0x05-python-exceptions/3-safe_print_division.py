@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 def safe_print_division(a, b):
-	"""
-	Divides two integers and prints the result.
-	Dividing by zero is like trying to find common sense on the internet—it's just not going to happen.
-	"""
 	result = None
 	try:
 		result = a / b

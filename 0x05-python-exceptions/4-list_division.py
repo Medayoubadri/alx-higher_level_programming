@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 def list_division(my_list_1, my_list_2, list_length):
-	"""
-	Divides elements of two lists element by element.
-	This is like dividing loot among pirates—sometimes there isn't enough, sometimes it's not loot at all, and sometimes someone's trying to split by zero.
-	"""
 	result_list = []
 
 	for i in range(list_length):
