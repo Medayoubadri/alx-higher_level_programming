@@ -2,7 +2,6 @@
 def safe_print_list(my_list=[], x=0):
 	"""
 	Prints 'x' elements from my_list.
-	
 	It's like playing Jenga with the list: just hope nothing goes out of bounds.
 	"""
 	num_printed = 0
