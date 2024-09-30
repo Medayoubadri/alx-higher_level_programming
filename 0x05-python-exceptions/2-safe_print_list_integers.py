@@ -12,8 +12,5 @@ def safe_print_list_integers(my_list=[], x=0):
 		except (ValueError, TypeError):
 			# Not an integer? Move along silently—no drama here.
 			continue
-		except IndexError:
-			# If we go out of range, let's gracefully bow out.
-			break
 	print()
 	return num_printed
