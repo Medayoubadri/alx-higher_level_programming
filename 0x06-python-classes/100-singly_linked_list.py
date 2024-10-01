@@ -101,9 +101,11 @@ class SinglyLinkedList:
             new_node.next_node = self.__head
             self.__head = new_node
         else:
-            # Traverse the list to find the correct position
+            # Traverse the list to find the correact position
             current = self.__head
-            while current.next_node is not None and current.next_node.data < value:
+            while (current.next_node is not None and
+                   current.next_node.data < value):
                 current = current.next_node
             new_node.next_node = current.next_node
             current.next_node = new_node
+
