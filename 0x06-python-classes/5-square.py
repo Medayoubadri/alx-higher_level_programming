@@ -6,7 +6,7 @@ Module that defines a class `Square` and prints the square.
 
 class Square:
     """
-    A class that defines a square by its size, calculates area, and prints the square.
+    A class that defines a square by its size.
     """
 
     def __init__(self, size=0):
