@@ -15,6 +15,7 @@ def is_safe(board, row, col):
             return False
     return True
 
+
 def solve_nqueens(N, row, board, solutions):
     """Use backtracking to find all solutions to the N-Queens problem."""
     if row == N:
@@ -24,6 +25,7 @@ def solve_nqueens(N, row, board, solutions):
         if is_safe(board, row, col):
             board[row] = col
             solve_nqueens(N, row + 1, board, solutions)
+
 
 def main():
     """Main function to parse input and solve the N-Queens problem."""
@@ -47,6 +49,7 @@ def main():
 
     for solution in solutions:
         print(solution)
+
 
 if __name__ == "__main__":
     main()
