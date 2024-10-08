@@ -3,6 +3,7 @@
 LockedClass function
 '''
 
+
 class LockedClass:
     '''
     Prevents the user from creating new instance attributes
