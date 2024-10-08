@@ -1,0 +1,160 @@
+=============================
+How to Use 101-lazy_matrix_mul.py
+=============================
+
+This module defines the function `lazy_matrix_mul(m_a, m_b)`.
+
+Basic Usage
+===========
+
+`lazy_matrix_mul(...)` multiplies two matrices `m_a` and `m_b`. 
+
+::
+
+    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+::
+
+    >>> m_a = [
+    ... [1, 2],
+    ... [3, 4],
+    ... ]
+    >>> m_b = m_a
+    >>> print(lazy_matrix_mul(m_a, m_b))
+    [[ 7 10]
+     [15 22]]
+
+::
+
+    >>> m_a = [[1, 2]]
+    >>> m_b = [
+    ... [3, 4],
+    ... [5, 6]
+    ... ]
+    >>> print(lazy_matrix_mul(m_a, m_b))
+    [[13 16]]
+
+Handling Floats
+===============
+
+`lazy_matrix_mul` also supports floating-point values.
+
+::
+
+    >>> m_a = [
+    ... [1.2, 5.5, 6.2],
+    ... [4.66, 12.3, -9.2]
+    ... ]
+    >>> m_b = [
+    ... [5.0, 3.3],
+    ... [-2.9, 4.4],
+    ... [7.2, 4.4]
+    ... ]
+    >>> print(lazy_matrix_mul(m_a, m_b))
+    [[ 34.69   55.44 ]
+     [-78.61   29.018]]
+
+Argument Validation
+===================
+
+A minimum of two arguments must be provided, otherwise a `TypeError` will be raised.
+
+::
+
+    >>> print(lazy_matrix_mul(m_a))
+    Traceback (most recent call last):
+    ...
+    TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
+
+::
+
+    >>> print(lazy_matrix_mul()) 
+    Traceback (most recent call last):
+    ...
+    TypeError: lazy_matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+Matrix Dimension Errors
+=======================
+
+If the matrices `m_a` and `m_b` cannot be multiplied, a `ValueError` will be raised.
+
+::
+
+    >>> m_a = [
+    ... [1, 2],
+    ... [3, 4],
+    ... ]
+    >>> m_b = [
+    ... [1, 2],
+    ... [2, 3],
+    ... [4, 5]
+    ... ]
+    >>> print(lazy_matrix_mul(m_a, m_b))
+    Traceback (most recent call last):
+    ...
+    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 3 is different from 2)
+
+Empty Matrices
+==============
+
+Both matrices `m_a` and `m_b` must contain elements. If either is empty, a `ValueError` will be raised.
+
+::
+
+    >>> print(lazy_matrix_mul([[]], [[5, 6], [7, 8]]))
+    Traceback (most recent call last):
+    ...
+    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 0)
+
+::
+
+    >>> print(lazy_matrix_mul([[5, 6], [7, 8]], [[]]))
+    Traceback (most recent call last):
+    ...
+    ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+
+Handling `None` Inputs
+======================
+
+If either matrix is `None`, a `TypeError` will be raised.
+
+::
+
+    >>> print(lazy_matrix_mul(None, None))
+    Traceback (most recent call last):
+    ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
+
+Row Size Validation
+===================
+
+Each row in `m_a` and `m_b` must be of equal size. If not, a `ValueError` will be raised.
+
+::
+
+    >>> m_a = [
+    ... [1, 2],
+    ... [3, 4, 5]
+    ... ]
+    >>> m_b = [
+    ... [1, 2],
+    ... [3, 4]
+    ... ]
+    >>> print(lazy_matrix_mul(m_a, m_b))
+    Traceback (most recent call last):
+    ...
+    ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+::
+
+    >>> m_a = [
+    ... [1, 2],
+    ... [3, 4]
+    ... ]
+    >>> m_b = [
+    ... [1, 2],
+    ... [3, 4, 5]
+    ... ]
+    >>> print(lazy_matrix_mul(m_a, m_b))
+    Traceback (most recent call last):
+    ...
+    ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
