@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+'''
+LockedClass function
+'''
 
 class LockedClass:
     '''
