@@ -4,7 +4,7 @@ Defines a class BaseGeometry with area and integer_validator methods.
 """
 
 
-class BaseGeometry:
+class BaseGeometry():
     """
     A class with an unimplemented area method and an integer validator.
     """
