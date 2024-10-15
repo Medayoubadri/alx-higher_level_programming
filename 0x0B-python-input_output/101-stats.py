@@ -8,17 +8,6 @@ Script that reads stdin line by line and computes metrics:
 
 import sys
 
-
-def print_stats(total_size, status_counts):
-    """
-    Prints the total file size and the count of status codes ascending order.
-    """
-    print(f"File size: {total_size}")
-    for code in sorted(status_counts.keys()):
-        if status_counts[code] > 0:
-            print(f"{code}: {status_counts[code]}")
-
-
 total_file_size = 0
 status_codes = {200: 0, 301: 0, 400: 0, 401: 0,
                  403: 0, 404: 0, 405: 0, 500: 0}
