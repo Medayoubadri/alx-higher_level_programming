@@ -75,11 +75,19 @@ Test 9: integer_validator() with list
 [TypeError] age must be an integer
 
 ======================
-Test 10: integer_validator() with boolean
+Test 11: integer_validator() with set
 ======================
 >>> try:
-...     bg.integer_validator("age", True)
+...     bg.integer_validator("age", {3, 4})
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
 [TypeError] age must be an integer
 
+======================
+Test 12: integer_validator() with None
+======================
+>>> try:
+...     bg.integer_validator("age", None)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] age must be an integer
