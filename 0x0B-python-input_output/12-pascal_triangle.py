@@ -4,6 +4,7 @@ Function that generates Pascal's triangle of size n.
 Returns a list of lists of integers representing the triangle.
 """
 
+
 def pascal_triangle(n):
     """
     Returns a list of lists representing Pascal's triangle of n.
