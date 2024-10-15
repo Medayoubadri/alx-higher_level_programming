@@ -73,16 +73,7 @@ Test 9: integer_validator() with list
 [TypeError] age must be an integer
 
 ======================
-Test 10: integer_validator() with boolean
-======================
->>> try:
-...     bg.integer_validator("age", True)
-... except Exception as e:
-...     print("[{}] {}".format(e.__class__.__name__, e))
-[TypeError] age must be an integer
-
-======================
-Test 11: integer_validator() with set
+Test 10: integer_validator() with set
 ======================
 >>> try:
 ...     bg.integer_validator("age", {3, 4})
@@ -91,10 +82,37 @@ Test 11: integer_validator() with set
 [TypeError] age must be an integer
 
 ======================
-Test 12: integer_validator() with None
+Test 11: integer_validator() with None
 ======================
 >>> try:
 ...     bg.integer_validator("age", None)
 ... except Exception as e:
 ...     print("[{}] {}".format(e.__class__.__name__, e))
 [TypeError] age must be an integer
+
+======================
+Test 12: integer_validator() with boolean
+======================
+>>> try:
+...     bg.integer_validator("age", True)
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] age must be an integer
+
+======================
+Test 13: integer_validator() with no arguments
+======================
+>>> try:
+...     bg.integer_validator()
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+======================
+Test 14: integer_validator("age") with missing value argument
+======================
+>>> try:
+...     bg.integer_validator("age")
+... except Exception as e:
+...     print("[{}] {}".format(e.__class__.__name__, e))
+[TypeError] integer_validator() missing 1 required positional argument: 'value'
