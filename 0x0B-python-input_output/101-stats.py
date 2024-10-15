@@ -36,7 +36,7 @@ try:
 
             if status_code in status_codes:
                 status_codes[status_code] += 1
-        except Exception:
+        except (IndexError, ValueError):
             pass
 
         if line_count % 10 == 0:
