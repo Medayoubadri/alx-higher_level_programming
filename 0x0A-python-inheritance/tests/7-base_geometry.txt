@@ -1,0 +1,25 @@
+===== Test 1 =====
+# Testing integer_validator with a valid integer
+bg = BaseGeometry()
+bg.integer_validator("my_int", 12)
+*** no output expected ***
+
+===== Test 2 =====
+# Testing integer_validator with a valid integer
+bg.integer_validator("width", 89)
+*** no output expected ***
+
+===== Test 3 =====
+# Testing integer_validator with a string instead of an integer
+bg.integer_validator("name", "John")
+[TypeError] name must be an integer
+
+===== Test 4 =====
+# Testing integer_validator with 0 (invalid input)
+bg.integer_validator("age", 0)
+[ValueError] age must be greater than 0
+
+===== Test 5 =====
+# Testing integer_validator with a negative number (invalid input)
+bg.integer_validator("distance", -4)
+[ValueError] distance must be greater than 0
