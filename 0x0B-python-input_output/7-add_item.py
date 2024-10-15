@@ -4,6 +4,7 @@ A script that adds command-line arguments to a list and saves them to a file.
 Because who doesn't love keeping track of all their arguments in a JSON file?
 """
 
+
 import sys
 import os.path
 
