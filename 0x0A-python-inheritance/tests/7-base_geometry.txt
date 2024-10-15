@@ -7,7 +7,7 @@ Test 1: Check integer_validator() with valid integers
 >>> bg.integer_validator("width", 89)   # Valid test
 
 ======================
-Test 2: integer_validator() with non-integer value
+Test 2: integer_validator() with non-integer value (string)
 ======================
 >>> try:
 ...     bg.integer_validator("name", "John")
