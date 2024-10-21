@@ -6,6 +6,10 @@ import unittest
 from models.rectangle import Rectangle
 from models.base import Base
 
+    
+from io import StringIO
+import sys
+
 
 class TestRectangle(unittest.TestCase):
     """
@@ -54,6 +58,20 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.area(), 6)
         self.assertEqual(r2.area(), 20)
         self.assertEqual(r3.area(), 56)
+
+    def test_display(self):
+        """
+        Test the display method of the Rectangle instance.
+        """
+        r1 = Rectangle(4, 3)
+        expected_output = "####\n####\n####\n"
+
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r1.display()
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(captured_output.getvalue(), expected_output)
 
 
 if __name__ == "__main__":
