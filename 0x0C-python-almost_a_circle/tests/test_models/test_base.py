@@ -4,6 +4,7 @@ Unit tests for the Base class.
 """
 import unittest
 from models.base import Base
+from models.rectangle import Rectangle
 
 
 class TestBase(unittest.TestCase):
@@ -59,6 +60,26 @@ class TestBase(unittest.TestCase):
         self.assertEqual(Base.to_json_string(None), "[]")
 
         self.assertEqual(Base.to_json_string([]), "[]")
+
+    def test_save_to_file(self):
+        """
+        Test the save_to_file method of the Base class.
+        """
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 0, 0, 2)
+        Rectangle.save_to_file([r1, r2])
+
+        with open("Rectangle.json", "r") as file:
+            file_content = file.read()
+            expected_output = (
+                '[{"x": 2, "y": 8, "id": 1, "height": 7, "width": 10}, '
+                '{"x": 0, "y": 0, "id": 2, "height": 4, "width": 2}]'
+            )
+            self.assertEqual(file_content, expected_output)
+
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
 
 
 if __name__ == "__main__":
