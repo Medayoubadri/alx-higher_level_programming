@@ -110,6 +110,19 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s1.size, 7)
         self.assertEqual(s1.y, 1)
 
+    def test_to_dictionary(self):
+        """
+        Test the to_dictionary method of the Square instance.
+        """
+        s1 = Square(10, 2, 1, 1)
+        expected_dict = {'id': 1, 'x': 2, 'size': 10, 'y': 1}
+        self.assertEqual(s1.to_dictionary(), expected_dict)
+
+        s2 = Square(1, 1)
+        s2.update(**s1.to_dictionary())
+        self.assertEqual(s2.to_dictionary(), expected_dict)
+        self.assertFalse(s1 == s2)
+
 
 if __name__ == "__main__":
     unittest.main()
