@@ -2,6 +2,7 @@
 """
 Unit tests for the Base class.
 """
+import os
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -116,6 +117,49 @@ class TestBase(unittest.TestCase):
         self.assertEqual(s1.size, 4)
         self.assertEqual(s1.x, 2)
         self.assertEqual(s1.y, 1)
+
+    def test_load_from_file(self):
+        """
+        Test the load_from_file method of the Base class.
+        """
+        from models.square import Square
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 0, 0, 2)
+        Rectangle.save_to_file([r1, r2])
+
+        list_rectangles_output = Rectangle.load_from_file()
+        self.assertEqual(len(list_rectangles_output), 2)
+
+        self.assertEqual(
+            list_rectangles_output[0].to_dictionary(),
+            r1.to_dictionary()
+            )
+        self.assertEqual(
+            list_rectangles_output[1].to_dictionary(),
+            r2.to_dictionary()
+            )
+
+        s1 = Square(5, 0, 0, 5)
+        s2 = Square(7, 9, 1, 6)
+        Square.save_to_file([s1, s2])
+
+        list_squares_output = Square.load_from_file()
+        self.assertEqual(len(list_squares_output), 2)
+
+        self.assertEqual(
+            list_squares_output[0].to_dictionary(),
+            s1.to_dictionary()
+            )
+        self.assertEqual(
+            list_squares_output[1].to_dictionary(),
+            s2.to_dictionary()
+            )
+
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        empty_list = Rectangle.load_from_file()
+        self.assertEqual(empty_list, [])
 
 
 if __name__ == "__main__":
