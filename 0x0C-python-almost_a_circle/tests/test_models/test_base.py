@@ -81,6 +81,22 @@ class TestBase(unittest.TestCase):
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
 
+    def test_from_json_string(self):
+        """
+        Test the from_json_string method of the Base class.
+        """
+        json_str = (
+            '[{"height": 4, "width": 10, "id": 89}, '
+            '{"height": 7, "width": 1, "id": 7}]'
+            )
+        expected_list = [
+            {"height": 4, "width": 10, "id": 89},
+            {"height": 7, "width": 1, "id": 7}
+        ]
+        self.assertEqual(Base.from_json_string(json_str), expected_list)
+        self.assertEqual(Base.from_json_string(""), [])
+        self.assertEqual(Base.from_json_string(None), [])
+
 
 if __name__ == "__main__":
     unittest.main()
