@@ -60,6 +60,25 @@ class TestSquare(unittest.TestCase):
 
         self.assertEqual(captured_output.getvalue(), expected_output)
 
+    def test_square_size(self):
+        """
+        Test the getter and setter
+        for the size attribute of the Square instance.
+        """
+        s1 = Square(5)
+        self.assertEqual(s1.size, 5)
+
+        s1.size = 10
+        self.assertEqual(s1.size, 10)
+        self.assertEqual(s1.width, 10)
+        self.assertEqual(s1.height, 10)
+
+        with self.assertRaises(TypeError):
+            s1.size = "9"
+
+        with self.assertRaises(ValueError):
+            s1.size = -3
+
 
 if __name__ == "__main__":
     unittest.main()
