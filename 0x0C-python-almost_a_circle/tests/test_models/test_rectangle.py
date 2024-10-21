@@ -6,7 +6,6 @@ import unittest
 from models.rectangle import Rectangle
 from models.base import Base
 
-    
 from io import StringIO
 import sys
 
@@ -72,6 +71,16 @@ class TestRectangle(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
         self.assertEqual(captured_output.getvalue(), expected_output)
+
+    def test_str_method(self):
+        """
+        Test the __str__ method of the Rectangle instance.
+        """
+        r1 = Rectangle(4, 6, 2, 1, 12)
+        r2 = Rectangle(5, 5, 1)
+
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/6")
+        self.assertEqual(str(r2), "[Rectangle] (1) 1/0 - 5/5")
 
 
 if __name__ == "__main__":
