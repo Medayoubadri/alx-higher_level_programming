@@ -161,6 +161,67 @@ class TestBase(unittest.TestCase):
         empty_list = Rectangle.load_from_file()
         self.assertEqual(empty_list, [])
 
+    def test_save_to_file_csv(self):
+        """
+        Test the save_to_file_csv method of the Base class.
+        """
+        from models.square import Square
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 0, 0, 2)
+        Rectangle.save_to_file_csv([r1, r2])
+
+        with open("Rectangle.csv", "r") as file:
+            content = file.read()
+            expected_output = "1,10,7,2,8\n2,2,4,0,0\n"
+            self.assertEqual(content, expected_output)
+
+        s1 = Square(5, 0, 0, 5)
+        s2 = Square(7, 9, 1, 6)
+        Square.save_to_file_csv([s1, s2])
+
+        with open("Square.csv", "r") as file:
+            content = file.read()
+            expected_output = "5,5,0,0\n6,7,9,1\n"
+            self.assertEqual(content, expected_output)
+
+    def test_load_from_file_csv(self):
+        """
+        Test the load_from_file_csv method of the Base class.
+        """
+        from models.square import Square
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 0, 0, 2)
+        Rectangle.save_to_file_csv([r1, r2])
+
+        list_rectangles_output = Rectangle.load_from_file_csv()
+        self.assertEqual(len(list_rectangles_output), 2)
+        self.assertEqual(
+            list_rectangles_output[0].to_dictionary(),
+            r1.to_dictionary()
+            )
+        self.assertEqual(
+            list_rectangles_output[1].to_dictionary(),
+            r2.to_dictionary()
+            )
+
+        s1 = Square(5, 0, 0, 5)
+        s2 = Square(7, 9, 1, 6)
+        Square.save_to_file_csv([s1, s2])
+
+        list_squares_output = Square.load_from_file_csv()
+        self.assertEqual(len(list_squares_output), 2)
+        self.assertEqual(
+            list_squares_output[0].to_dictionary(),
+            s1.to_dictionary()
+            )
+        self.assertEqual(
+            list_squares_output[1].to_dictionary(),
+            s2.to_dictionary()
+            )
+
+        os.remove("Rectangle.csv")
+        os.remove("Square.csv")
+
 
 if __name__ == "__main__":
     unittest.main()

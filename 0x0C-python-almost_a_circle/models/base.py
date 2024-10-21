@@ -3,6 +3,7 @@
 This module provides the Base class for other models to inherit from.
 """
 import json
+import csv
 
 
 class Base:
@@ -104,5 +105,70 @@ class Base:
                 json_data = file.read()
                 list_dicts = cls.from_json_string(json_data)
                 return [cls.create(**d) for d in list_dicts]
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Serializes list_objs to a CSV file.
+
+        Args:
+            list_objs (list): List of instances inheriting from Base.
+        """
+        filename = f"{cls.__name__}.csv"
+        with open(filename, "w", newline="") as file:
+            writer = csv.writer(file)
+            if cls.__name__ == "Rectangle":
+                for obj in list_objs:
+                    writer.writerow([
+                        obj.id,
+                        obj.width,
+                        obj.height,
+                        obj.x,
+                        obj.y
+                        ])
+            elif cls.__name__ == "Square":
+                for obj in list_objs:
+                    writer.writerow([
+                        obj.id,
+                        obj.size,
+                        obj.x,
+                        obj.y
+                        ])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Deserializes instances from a CSV file.
+
+        Returns:
+            list: A list of instances of cls.
+        """
+        filename = f"{cls.__name__}.csv"
+        try:
+            with open(filename, "r", newline="") as file:
+                reader = csv.reader(file)
+                objs = []
+                if cls.__name__ == "Rectangle":
+                    for row in reader:
+                        obj_dict = {
+                            "id": int(row[0]),
+                            "width": int(row[1]),
+                            "height": int(row[2]),
+                            "x": int(row[3]),
+                            "y": int(row[4])
+                        }
+                        objs.append(cls.create(**obj_dict))
+                elif cls.__name__ == "Square":
+                    for row in reader:
+                        obj_dict = {
+                            "id": int(row[0]),
+                            "size": int(row[1]),
+                            "x": int(row[2]),
+                            "y": int(row[3])
+                        }
+                        objs.append(cls.create(**obj_dict))
+                return objs
         except FileNotFoundError:
             return []
