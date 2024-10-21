@@ -97,6 +97,26 @@ class TestBase(unittest.TestCase):
         self.assertEqual(Base.from_json_string(""), [])
         self.assertEqual(Base.from_json_string(None), [])
 
+    def test_create(self):
+        """
+        Test the create method of the Base class.
+        """
+        from models.square import Square
+        rect_dict = {'id': 1, 'width': 3, 'height': 5, 'x': 1, 'y': 0}
+        r1 = Rectangle.create(**rect_dict)
+        self.assertEqual(r1.id, 1)
+        self.assertEqual(r1.width, 3)
+        self.assertEqual(r1.height, 5)
+        self.assertEqual(r1.x, 1)
+        self.assertEqual(r1.y, 0)
+
+        square_dict = {'id': 2, 'size': 4, 'x': 2, 'y': 1}
+        s1 = Square.create(**square_dict)
+        self.assertEqual(s1.id, 2)
+        self.assertEqual(s1.size, 4)
+        self.assertEqual(s1.x, 2)
+        self.assertEqual(s1.y, 1)
+
 
 if __name__ == "__main__":
     unittest.main()
