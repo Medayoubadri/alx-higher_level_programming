@@ -51,3 +51,25 @@ class Square(Rectangle):
         """
         self.width = value
         self.height = value
+
+    def update(self, *args, **kwargs):
+        """
+        Assigns attributes based on *args or **kwargs.
+
+        Args:
+            *args (int): No-keyword arguments in the following order:
+                        1st argument -> id attribute
+                        2nd argument -> size attribute
+                        3rd argument -> x attribute
+                        4th argument -> y attribute
+            **kwargs (dict): Key-value pairs of attributes to be updated.
+        """
+        if args:
+            attributes = ['id', 'size', 'x', 'y']
+            for i, value in enumerate(args):
+                if i < len(attributes):
+                    setattr(self, attributes[i], value)
+        else:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)
