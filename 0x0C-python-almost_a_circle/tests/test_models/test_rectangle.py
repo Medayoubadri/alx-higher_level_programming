@@ -82,6 +82,31 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/6")
         self.assertEqual(str(r2), "[Rectangle] (1) 1/0 - 5/5")
 
+    def test_display_with_offset(self):
+        """
+        Test the display method of the Rectangle instance
+        with x and y offsets.
+        """
+        r1 = Rectangle(2, 3, 2, 2)
+        expected_output_1 = "\n\n  ##\n  ##\n  ##\n"
+
+        r2 = Rectangle(3, 2, 1, 0)
+        expected_output_2 = " ###\n ###\n"
+
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r1.display()
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(captured_output.getvalue(), expected_output_1)
+
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r2.display()
+        sys.stdout = sys.__stdout__
+
+        self.assertEqual(captured_output.getvalue(), expected_output_2)
+
 
 if __name__ == "__main__":
     unittest.main()
