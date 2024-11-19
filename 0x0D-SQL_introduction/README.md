@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/SQL.jpeg" alt="SQL Introduction">
+  <img src="assets/SQL.jpg" alt="SQL Introduction">
 </p>
 
 # **0x0D. SQL - Introduction**
