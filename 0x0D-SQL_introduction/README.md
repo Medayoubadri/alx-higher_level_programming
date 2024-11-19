@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="0x0D-SQL_introduction/assets/SQL" alt="SQL Introduction">
+  <img src="assets/SQL" alt="SQL Introduction">
 </p>
 
 # **0x0D. SQL - Introduction**
@@ -13,7 +13,7 @@ Welcome to the world of **SQL**, where your tables are more organized than your 
 - **DDL and DML**: Creating structures vs. playing with the data within.
 - **Functions**: Because sometimes you need math without leaving SQL.
 - **Best practices**: Yes, `SELECT *` is frowned upon—deal with it.
-- <img src="0x0D-SQL_introduction/assets/allow-it" alt="SQL Introduction">
+- <img src="assets/allow-it" alt="SQL Introduction">
 
 ---
 
