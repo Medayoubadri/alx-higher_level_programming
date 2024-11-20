@@ -75,16 +75,16 @@ At the end of this project, you should be able to explain:
 8. **Cities Table**: Create a table for cities with a foreign key referencing states.
 9. **Cities of California**: List all cities in California.
 10. **Cities by States**: List all cities and their corresponding states.
-11. **Genre ID by Show**: List [shows](/assets/hbtn_0d_tvshows.sql) with at least one genre.
-12. **No Genre**: List [shows](/assets/hbtn_0d_tvshows.sql) without any genre.
-13. **Number of Shows by Genre**: Count [shows](/assets/hbtn_0d_tvshows.sql) for each genre.
+11. **Genre ID by Show**: List [shows](assets/hbtn_0d_tvshows.sql) with at least one genre.
+12. **No Genre**: List [shows](assets/hbtn_0d_tvshows.sql) without any genre.
+13. **Number of Shows by Genre**: Count [shows](assets/hbtn_0d_tvshows.sql) for each genre.
 14. **My Genres**: List all genres for the show 'Dexter'.
-15. **Only Comedy**: List all comedy [shows](/assets/hbtn_0d_tvshows.sql).
-16. **List Shows and Genres**: List all [shows](/assets/hbtn_0d_tvshows.sql) and their genres.
+15. **Only Comedy**: List all comedy [shows](assets/hbtn_0d_tvshows.sql).
+16. **List Shows and Genres**: List all [shows](assets/hbtn_0d_tvshows.sql) and their genres.
 17. **Not My Genre**: List all genres not linked to the show 'Dexter'.
-18. **No Comedy Tonight!**: List [shows](/assets/hbtn_0d_tvshows.sql) without the comedy genre.
-19. **Rotten Tomatoes**: Rank shows by their [ratings](/assets/hbtn_0d_tvshows_rate.sql).
-20. **Best Genre**: Rank genres by their total [ratings](/assets/hbtn_0d_tvshows_rate.sql).
+18. **No Comedy Tonight!**: List [shows](assets/hbtn_0d_tvshows.sql) without the comedy genre.
+19. **Rotten Tomatoes**: Rank shows by their [ratings](assets/hbtn_0d_tvshows_rate.sql).
+20. **Best Genre**: Rank genres by their total [ratings](assets/hbtn_0d_tvshows_rate.sql).
 
 ---
 
