@@ -11,10 +11,10 @@ if __name__ == "__main__":
     repository = sys.argv[1]
     owner = sys.argv[2]
     url = f"https://api.github.com/repos/{owner}/{repository}/commits"
-    
+
     params = {'per_page': 10}
     r = requests.get(url, params=params)
-    
+
     commits = r.json()
     for commit in commits:
         sha = commit['sha']
