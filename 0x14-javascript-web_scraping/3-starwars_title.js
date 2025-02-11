@@ -1,19 +1,10 @@
 #!/usr/bin/node
 const request = require('request');
-
-if (process.argv.length < 3) {
-  console.error('Usage: ./3-starwars_title.js <movie_id>');
-  process.exit(1);
-}
-
-const movieId = process.argv[2];
-const url = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
-
-request.get(url, (error, response, body) => {
+const base = 'https://swapi-api.alx-tools.com/api/films/';
+request(`${base}${process.argv[2]}`, (error, response, body) => {
   if (error) {
-    console.error(error);
-  } else {
-    const movie = JSON.parse(body);
-    console.log(movie.title);
+    console.error('Error fetching data:', error);
+    return;
   }
+  console.log(JSON.parse(body).title);
 });
