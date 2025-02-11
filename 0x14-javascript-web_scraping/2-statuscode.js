@@ -1,3 +1,7 @@
 #!/usr/bin/node
 const request = require('request');
-request(process.argv[2], (error, response) => console.log(`code: ${response && response.statusCode}`));
+request.get(process.argv[2]).on('response', function (response) {
+  console.log(`code: ${response.statusCode}`);
+}).on('error', function (error) {
+  console.error('Request failed:', error);
+});
