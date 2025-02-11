@@ -1,0 +1,8 @@
+# Ignore all files and directories
+# Node.js dependencies
+node_modules/
+package-lock.json
+package.json
+# Log files
+logs/
+*.log
